@@ -27,7 +27,6 @@ const Sidebar = () => {
 
   let userId = JSON.parse(localStorage.getItem("user"))
 
-
   let path = [
         {
           name: "Dashboard",
@@ -295,7 +294,7 @@ const Sidebar = () => {
                   </div>
                   
                   <div className=''>
-                      <img className='size-12' src={userId ? userId.profile : "https://avatar.iran.liara.run/public/12"} alt="" />
+                      <img className='size-12' src={userId ? userId?.profile : "https://avatar.iran.liara.run/public/12"} alt="" />
                       
                     </div>
                   
