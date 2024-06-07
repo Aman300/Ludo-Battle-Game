@@ -31,7 +31,7 @@ const Sidebar = () => {
         {
           name: "Dashboard",
           path: "/",
-          svgLogo: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          svgLogo: "M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"
         },
         {
           name: "Wallet",
@@ -75,7 +75,7 @@ const Sidebar = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className=" font-bold text-xl ">
           <Link to="/user-dashboard">
-           <h2><span className='text-rose-600'>Ludo</span>Battle</h2>
+           <h2><span className='text-blue-600'>Ludo</span>Battle</h2>
           </Link>
         </div>
 
@@ -124,7 +124,7 @@ const Sidebar = () => {
             <div className="flex items-center justify-center h-14 border-b">
             <div className=" font-bold text-xl ">
                   <Link to="/">
-                  <h2><span className='text-rose-600'>Ludo</span>Battle</h2>
+                  <h2><span className='text-blue-600'>Ludo</span>Battle</h2>
                   </Link>
                 </div>
             </div>
@@ -134,7 +134,7 @@ const Sidebar = () => {
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-rose-50 text-gray-600 hover:text-rose-700 border-transparent hover:border-rose-500 pr-6 ${activeTab === index ? 'border-rose-500  bg-rose-50 text-rose-700' : ''}`}
+                          className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-50 text-gray-600 hover:text-blue-700 border-transparent hover:border-blue-500 pr-6 ${activeTab === index ? 'border-blue-500  bg-blue-50 text-blue-700' : ''}`}
                           onClick={() => handleTabClick(index)}
                         >
                           <span className="inline-flex justify-center items-center ml-4">
@@ -167,7 +167,7 @@ const Sidebar = () => {
 
             <button
               onClick={logout}
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-rose-50 text-gray-600 hover:text-rose-700 rounded-2xl pr-6"
+              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-50 text-gray-600 hover:text-blue-700 rounded-2xl pr-6"
             >
               <span className="inline-flex justify-center items-center ml-4">
                 <svg
@@ -194,21 +194,26 @@ const Sidebar = () => {
 
         {/* Navigation links for larger screens */}
         <div className="lg:block hidden md:flex md:flex-shrink-0 antialiased bg-gray-50 text-gray-800">
-          <div className="fixed flex flex-col top-0 left-0 w-64 bg-white h-full shadow-2xl rounded-3xl">
-            <div className="flex items-center justify-center h-14 shadow-sm">
+          <div className="fixed flex flex-col top-0 left-0 w-64 bg-white h-full">
+            <div className="flex items-center justify-start ml-6 mt-4 h-14 ">
             <div className=" font-bold text-xl ">
-                  <Link to="/user-dashboard">
-                  <h2><span className='text-rose-600'>Ludo</span>Battle</h2>
-                  </Link>
+              <Link to="/user-dashboard" className='flex justify-center items-center gap-2'>
+                <div className='bg-blue-600 py-1 px-2 rounded-xl text-white font-semibold'>
+                M
                 </div>
+              <div>
+                <p className='text-[20px]'>Mouris</p>
+              </div>
+              </Link>
+            </div>
             </div>
             <div className="overflow-y-auto overflow-x-hidden flex-grow">
-              <ul className="flex flex-col py-4 space-y-1 ">
+              <ul className="flex flex-col py-4 space-y-1 ml-4 ">
                     {path.map((link, index) => (
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className={`relative flex flex-row items-center h-11 focus:outline-none hover:bg-rose-50 text-gray-600 hover:text-rose-700 border-transparent hover:border-rose-500 pr-6 ${activeTab === index ? 'border-rose-500  bg-rose-50 text-rose-700' : ''}`}
+                          className={`relative flex flex-row items-center h-11 focus:outline-none text-gray-600 hover:text-blue-700 border-transparent pr-6 ${activeTab === index ? 'text-blue-700' : ''}`}
                           onClick={() => handleTabClick(index)}
                         >
                           <span className="inline-flex justify-center items-center ml-4">
@@ -227,7 +232,8 @@ const Sidebar = () => {
                               />
                             </svg>
                           </span>
-                          <span className="ml-2 text-md font-semibold tracking-wide truncate">
+                          
+                          <span className={`ml-2 font-semibold hover:text-blue-700  ${activeTab === index ? 'text-blue-700' : 'text-zinc-500'}`}>
                             {link.name}
                           </span>
                         </Link>
@@ -241,7 +247,7 @@ const Sidebar = () => {
 
                   <button
                     onClick={logout}
-                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-rose-50 text-gray-600 hover:text-rose-700 rounded-2xl pr-6"
+                    className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-50 text-gray-600 hover:text-blue-700 rounded-2xl pr-6"
                   >
                     <span className="inline-flex justify-center items-center ml-4">
                       <svg
@@ -267,36 +273,26 @@ const Sidebar = () => {
           </div>
            {/* Main content */}
 
-            <div className='flex justify-end items-center mt-3'>
-               
-
-
+            <div className='flex justify-between items-center p-2 bg-white'>
+                <div className='ml-[290px]'>
+                  <input type="search" name="search" id="" className='py-2 outline-none px-6 w-[400px] rounded-xl bg-[#f5f7f9]' placeholder='Search something...' />
+                </div>
               <div className='flex justify-end items-center gap-3 mr-8'>
-                  <div className='py-3 px-5 bg-rose-50 rounded-2xl text-rose-500 font-semibold flex gap-1'>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                      </svg>
-                      <p>500</p>
+               
+                  <div className='py-2 px-3 bg-[#f5f7f9] rounded-2xl font-semibold flex gap-1'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+                    </svg>
                   </div>
-                  <div className='py-3 px-5 bg-green-50 rounded-2xl text-green-500 font-semibold flex gap-1'>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
-                  </svg>
-
-                      <p>500</p>
-                  </div>
-                  <div className='py-3 px-5 bg-indigo-50 rounded-2xl text-indigo-500 font-semibold flex gap-1'>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
-                      </svg>
-                      <p>500</p>
-                  </div>
-                  
+                  <div className='py-2 px-3 bg-[#f5f7f9] rounded-2xl font-semibold flex gap-1'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
+                    </svg>
+                  </div>                                   
                   <div className=''>
                       <img className='size-12' src={userId ? userId?.profile : "https://avatar.iran.liara.run/public/12"} alt="" />
                       
-                    </div>
+                  </div>
                   
               </div>
            </div>
