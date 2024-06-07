@@ -21,13 +21,13 @@ export default function App() {
           <Route path='/login' element={<Login />} />
           {/* <Route path='/signup' element={<Signup />} /> */}
 
-          <Route >
+          <Route element={<PrivateRoutes />}>
           <Route
             path="/"
             element={
               <div>
                 <Sidebar />
-                <div className='xl:ml-[260px]'>
+                <div className='xl:ml-[300px]'>
                   <Outlet /> 
                 </div>
                 {/* <Footer/> */}

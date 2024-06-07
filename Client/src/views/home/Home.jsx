@@ -9,7 +9,6 @@ import { useFormik } from 'formik';
 import { createGameRoute, deleteGameRoute } from '../../utils/APIRoutes';
 import socket from "../../utils/Socket";
 import 'animate.css';
-import ReactApexChart from 'react-apexcharts';
 
 
 const validate = values => {
@@ -120,147 +119,142 @@ async function fetchOpenGame(){
   }, []);
 
 
-    // Define your chart options and series data
-    const [options, setOptions] = useState({
-      chart: {
-        type: 'bar',
-        height: 350
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '55%',
-          endingShape: 'rounded',
-          borderRadius: 3,
-        },
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ['transparent']
-      },
-      xaxis: {
-        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-      },
-      yaxis: {
-        title: {
-          text: '$ (thousands)'
-        }
-      },
-      fill: {
-        opacity: 1
-      },
-      tooltip: {
-        y: {
-          formatter: function (val) {
-            return "$ " + val + " thousands"
-          }
-        }
-      }
-    });
-  
-    const [series, setSeries] = useState([{
-      name: 'Net Profit',
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-    }, {
-      name: 'Revenue',
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-    }, {
-      name: 'Free Cash Flow',
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-    }]);
-
-
   return (
     <>
-    <div className='xl:grid xl:grid-cols-2 p-5 gap-4'>
-      <div className=''>
-        <div className='flex justify-between gap-3 mb-4'>
-          <div className='bg-white flex justify-around items-center w-full hover:shadow-2xl h-20 rounded-xl  cursor-pointer'>
-              <div className='flex justify-between items-center'>
-                <div className='bg-[#ebeffd] w-14 h-14 flex justify-center items-center rounded-xl mr-3'>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-blue-600">
-                      <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                      <path fillRule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clipRule="evenodd" />
-                    </svg>
-                </div>
-                <div>
-                  <p className=' font-semibold'>3.456K</p>
-                  <p className='text-gray-400'>Total Views</p>
-                </div>
-              </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-white">
-                    <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                  </svg>
-              </div>          
-          </div>
-          <div className='bg-white flex justify-around items-center w-full hover:shadow-2xl h-20 rounded-xl  cursor-pointer'>
-              <div className='flex justify-between items-center'>
-                <div className='bg-[#ebeffd] w-14 h-14 flex justify-center items-center rounded-xl mr-3'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-blue-600">
-                <path d="M1 1.75A.75.75 0 0 1 1.75 1h1.628a1.75 1.75 0 0 1 1.734 1.51L5.18 3a65.25 65.25 0 0 1 13.36 1.412.75.75 0 0 1 .58.875 48.645 48.645 0 0 1-1.618 6.2.75.75 0 0 1-.712.513H6a2.503 2.503 0 0 0-2.292 1.5H17.25a.75.75 0 0 1 0 1.5H2.76a.75.75 0 0 1-.748-.807 4.002 4.002 0 0 1 2.716-3.486L3.626 2.716a.25.25 0 0 0-.248-.216H1.75A.75.75 0 0 1 1 1.75ZM6 17.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM15.5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
-              </svg>
-                </div>
-                <div>
-                  <p className=' font-semibold'>45.456K</p>
-                  <p className='text-gray-400'>Total Profit</p>
-                </div>
-              </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-white">
-                    <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                  </svg>
-              </div>          
-          </div>
-          
+
+
+
+    <div className='flex justify-start ml-5 mt-10 xl:mt-0'>
+        <div onClick={() => setShowModal(true)} className=' cursor-pointer py-3 px-5 bg-rose-50 rounded-lg text-rose-500 font-semibold flex gap-1'>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+            <p className='uppercase font-bold'>Create battle</p>
         </div>
-        <div className='flex justify-between gap-3'>
-          <div className='bg-white flex justify-around items-center w-full hover:shadow-2xl h-20 rounded-xl  cursor-pointer'>
-              <div className='flex justify-between items-center'>
-                <div className='bg-[#ebeffd] w-14 h-14 flex justify-center items-center rounded-xl mr-3'>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-blue-600">
-                  <path fillRule="evenodd" d="M6 5v1H4.667a1.75 1.75 0 0 0-1.743 1.598l-.826 9.5A1.75 1.75 0 0 0 3.84 19H16.16a1.75 1.75 0 0 0 1.743-1.902l-.826-9.5A1.75 1.75 0 0 0 15.333 6H14V5a4 4 0 0 0-8 0Zm4-2.5A2.5 2.5 0 0 0 7.5 5v1h5V5A2.5 2.5 0 0 0 10 2.5ZM7.5 10a2.5 2.5 0 0 0 5 0V8.75a.75.75 0 0 1 1.5 0V10a4 4 0 0 1-8 0V8.75a.75.75 0 0 1 1.5 0V10Z" clipRule="evenodd" />
-                </svg>
+
+        {showModal ? (
+        <>
+          <div className="flex animate__animated animate__fadeInDown animate__faster justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-full h-screen">
+              <div className="border-0 rounded-lg shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none xl:p-6 p-5">
+              <div className='flex justify-between ' onClick={() => setShowModal(false)}>
+                  <p className=' text-bold font-semibold'>Amount can only accept 50 to 25000</p>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 cursor-pointer hover:text-rose-600">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
                 </div>
-                <div>
-                  <p className=' font-semibold'>2.456</p>
-                  <p className='text-gray-400'>Total Product</p>
-                </div>
+              <form  onSubmit={formik.handleSubmit}>
+                
+                  <input id="amount" name='amount' onChange={formik.handleChange}
+                  className={`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border ${formik.errors.amount ? "border-red-500" : "border-gray-300"} placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5`}
+                  type="number"
+                  placeholder="Enter battle amount"
+                  />
+
+                  {/* {formik.errors.otp && <div className="text-red-500 ">{formik.errors.otp}</div>} */}
+
+                  
+                  {/* Submit button */}
+                    <button
+                        type='submit'
+                        className="mt-5 tracking-wide font-semibold bg-rose-600 text-gray-100 w-full py-3 rounded-lg hover:bg-rose-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                        disabled={formik.isSubmitting} // Disable the button while submitting
+                    >
+                        {formik.isSubmitting ? (
+                            // Show loading spinner if submitting
+                            <span>Loading...</span>
+                        ) : (
+                            // Show "Login" text if not submitting
+                            <span>Create</span>
+                        )}
+                    </button>
+                </form>
               </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-white">
-                    <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                  </svg>
-              </div>          
+            </div>
           </div>
-          <div className='bg-white flex justify-around items-center w-full hover:shadow-2xl h-20 rounded-xl  cursor-pointer'>
-              <div className='flex justify-between items-center'>
-                <div className='bg-[#ebeffd] w-14 h-14 flex justify-center items-center rounded-xl mr-3'>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-blue-600">
-                    <path d="M7 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM14.5 9a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM1.615 16.428a1.224 1.224 0 0 1-.569-1.175 6.002 6.002 0 0 1 11.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 0 1 7 18a9.953 9.953 0 0 1-5.385-1.572ZM14.5 16h-.106c.07-.297.088-.611.048-.933a7.47 7.47 0 0 0-1.588-3.755 4.502 4.502 0 0 1 5.874 2.636.818.818 0 0 1-.36.98A7.465 7.465 0 0 1 14.5 16Z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className=' font-semibold'>3.456</p>
-                  <p className='text-gray-400'>Total Users</p>
-                </div>
-              </div>
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-white">
-                    <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                  </svg>
-              </div>          
-          </div>
-        </div>
-      </div>
-      <div className='bg-white hover:shadow-2xl rounded-xl cursor-pointer p-2'>
-        <ReactApexChart options={options} series={series} type="bar" height={350} />
-      </div>
+        </>
+      ) : null}
+    
+
     </div>
+    <div className='xl:grid xl:grid-cols-2 p-5 gap-2'>
+
+      <div>
+
+        <div className=' flex  justify-between py-5 bg-rose-50 rounded-2xl font-bold text-gray-700 px-10'>
+          <p> Open Battles</p>
+          <picture>
+          <source
+            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f911/512.webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f911/512.gif"
+            alt="🤑"
+            width={28}
+            height={28}
+          />
+        </picture>
+
+        </div>
+
+
+      
+        {data &&  data.map((item, index)=>(
+               <div className=' animate__animated animate__bounceInLeft animate__faster flex justify-around items-center border rounded-lg xl:py-4 py-1 mt-2'>
+               <div className=' flex justify-around items-center gap-2'>
+                 <img className='xl:size-12 size-10' src={item.user_id.profile} alt="" />
+                 <p>{item.user_id.name}</p>
+               </div>
+               <div className='text-center'>
+                 <img className='xl:size-10 size-8' src="https://static.vecteezy.com/system/resources/previews/022/949/509/non_2x/vs-versus-letters-logo-icon-isolated-on-white-background-vs-versus-symbol-for-confrontation-or-opposition-design-concept-vector.jpg" alt="" />
+                 <p>{item.game_amount}</p>
+               </div>
+               <div className='text-center flex justify-center items-center'>            
+               {
+                item.user_id._id === userId._id ? (<button onClick={() => deleteGame(item._id)} className='text-center xl:py-2 py-1 xl:px-5 p-3 bg-rose-600 hover:bg-rose-700 text-white font-semibold rounded-lg'>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>    
+                </button>)  : (<button className='text-center xl:py-2 py-1 xl:px-5 p-3 bg-yellow-400 hover:bg-yellow-500 text-white font-semibold rounded-lg'>
+                  Play
+                </button>)
+               }
+                 
+               </div>
+             </div>
+          ))}
+    
+
+      </div>
+
+      <div>
+        <div className='flex  justify-between py-5 bg-rose-50 rounded-2xl font-bold text-gray-700 px-10 mt-5 xl:mt-0'>
+          <p>Running Battles </p>
+          <picture>
+          <source
+            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3b2/512.webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3b2/512.gif"
+            alt="🎲"
+            width={28}
+            height={28}
+          />
+        </picture>
+
+
+        </div>
+
+        <RunningBattle/>
+
+      </div>
+    
+
+    </div>
+
+
     </>
   )
 }
