@@ -59,65 +59,52 @@ function Classic() {
 
     <div className='flex'>
       <div className='w-full xl:w-2/6  xl:border-r-4 border-gray-300'>
-        <div className='flex justify-between items-center px-4'>
-
-        
-          <div></div>    
-    
-          
-
-            {showModal ? (
-            <>
-              <div className="flex animate__animated animate__fadeInDown animate__faster justify-center items-center overflow-x-hidden xl:w-2/6 overflow-y-auto fixed bottom-0 inset-0 z-50 outline-none focus:outline-none">
-                <div className="relative w-full h-screen">
-                  <div className="border-0 rounded-b-[15px] shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none xl:p-6 p-5">
-                  <div className='flex justify-between ' onClick={() => setShowModal(false)}>
-                      <p className=' text-bold font-semibold'></p>
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 cursor-pointer hover:text-rose-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                      </svg>
-                    </div>
-                  <form  onSubmit={formik.handleSubmit}>
-                    
-                      <input id="amount" name='amount' onChange={formik.handleChange}
-                      className={`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border ${formik.errors.amount ? "border-red-500" : "border-gray-300"} placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5`}
-                      type="number"
-                      placeholder="Enter battle amount 50 to 25000"
-                      />
-
-                      {/* {formik.errors.otp && <div className="text-red-500 ">{formik.errors.otp}</div>} */}
-
-                      
-                      {/* Submit button */}
-                        <button
-                            type='submit'
-                            className="mt-5 tracking-wide font-semibold bg-rose-600 text-gray-100 w-full py-3 rounded-lg hover:bg-rose-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                            disabled={formik.isSubmitting} // Disable the button while submitting
-                        >
-                            {formik.isSubmitting ? (
-                                // Show loading spinner if submitting
-                                <span>Loading...</span>
-                            ) : (
-                                // Show "Login" text if not submitting
-                                <span>Create</span>
-                            )}
-                        </button>
-                    </form>
-                  </div>
-                </div>
+        <div className='w-full items-center px-4'> 
+        <label
+          className="mx-auto relative bg-white min-w-sm max-w-2xl flex flex-col md:flex-row items-center justify-center border py-2 px-2 rounded-2xl gap-2 shadow-2xl focus-within:border-gray-300"
+          htmlFor="search-bar"
+        >
+          <input
+            id="search-bar"
+            placeholder="Enter amount"
+            className="px-6 py-2 w-full rounded-md flex-1 outline-none bg-white"
+          />
+          <button className="w-full md:w-auto px-6 py-3 bg-rose-600 border-rose text-white fill-white active:scale-95 duration-100 border will-change-transform overflow-hidden relative rounded-xl transition-all disabled:opacity-70">
+            <div className="relative">
+              {/* Loading animation change opacity to display */}
+              <div className="flex items-center justify-center h-3 w-3 absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 transition-all">
+                <svg
+                  className="opacity-0 animate-spin w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx={12}
+                    cy={12}
+                    r={10}
+                    stroke="currentColor"
+                    strokeWidth={4}
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
               </div>
-            </>
-          ) : null}
-
-        <div onClick={() => setShowModal(true)} className=' cursor-pointer py-2 border px-2 bg-rose-50 rounded-xl text-rose-600 font-semibold flex gap-1'>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-              <p className='uppercase font-bold'>Create battle</p>
-          </div>
+              <div className="flex items-center transition-all opacity-1 valid:">
+                <span className="text-sm font-semibold whitespace-nowrap truncate mx-auto">
+                  CREATE
+                </span>
+              </div>
+            </div>
+          </button>
+        </label>
         </div>
 
-        <div className='grid grid-cols-1 p-5 gap-2'>
+        <div className='grid grid-cols-1 p-5 gap-2 '>
 
           <div>
 

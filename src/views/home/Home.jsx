@@ -8,6 +8,7 @@ import { createGameRoute, deleteGameRoute } from '../../utils/APIRoutes';
 import 'animate.css';
 import { Link } from 'react-router-dom';
 import BottomNav from '../../components/BottomNav';
+import RightSideView from '../../components/RightSideView';
 
 
 const validate = values => {
@@ -108,7 +109,7 @@ async function fetchUserList(){
   return (
     <>
 
-
+  <div className='flex'>
     <div className='w-full xl:w-2/6  xl:border-r-4 border-gray-300'>
       <div className='bg-black h-48 rounded-3xl ml-4 mr-4'>
         <img className='object-cover h-48 w-full rounded-3xl' src="https://mir-s3-cdn-cf.behance.net/projects/404/f3d5bf95825899.Y3JvcCwxMzcwLDEwNzIsNTQ2LDA.jpg" alt="" />
@@ -138,9 +139,10 @@ async function fetchUserList(){
             </div>
           </div>
         </div>
-      </div>
-     
+      </div>   
     </div>
+    <RightSideView/>
+  </div>
     </>
   )
 }

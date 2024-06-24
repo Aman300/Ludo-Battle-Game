@@ -10,6 +10,8 @@ const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
+  const navigator = useNavigate();
+
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
@@ -31,10 +33,16 @@ const Sidebar = () => {
   let path = [
 
     
+    
         {
-          name: "Nofifications",
+          name: "Wallet",
+          path: "/wallet",
+          svgLogo: "M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3"
+        },
+        {
+          name: "History",
           path: "/",
-          svgLogo: "M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+          svgLogo: "M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
         },
         {
           name: "Refer and Earn",
@@ -64,8 +72,8 @@ const Sidebar = () => {
     <>
 
         {/* Navigation links for larger screens */}
-        <div className={`fixed inset-y-0 left-0 z-50 w-full xl:w-1/3 shadow-sm transition-transform transform ${isMenuOpen ? 'animate__animated animate__fadeInLeft animate__faster translate-x-0 text-center flex justify-center items-center' : '-translate-x-full'}`}>
-          <div className="fixed flex flex-col top-0 left-0 w-full bg-white h-full shadow-2xl rounded-r-2xl">
+        <div className={`fixed inset-y-0 left-0 z-50 w-full xl:w-1/3 shadow-sm transition-transform transform ${isMenuOpen ? 'animate__animated animate__fadeInLeft animate__faster translate-x-0 text-center flex justify-center items-center' : '-translate-x-full '}`}>
+          <div className="fixed flex flex-col top-0 left-0 w-full bg-white h-full shadow-2xl">
             <div className="flex items-center ml-5 gap-3 h-14">
               <div>
                 <svg xmlns="http://www.w3.org/2000/svg" onClick={toggleMenu} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 cursor-pointer hover:text-rose-600">
@@ -90,7 +98,7 @@ const Sidebar = () => {
                       </svg>
                       <h1>Aman Sharma</h1>
                     </div>
-                      <div>
+                    <div className='hover:text-rose-600 cursor-pointer' onClick={() => (navigator("/profile"),toggleMenu(false))}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                           <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                         </svg>
@@ -117,10 +125,10 @@ const Sidebar = () => {
                       <li key={index}>
                         <Link
                           to={link.path}
-                          className={`relative flex justify-between items-center h-11 focus:outline-none hover:bg-orange-50 text-gray-600 hover:text-rose-600 border-b hover:border-rose-600 pr-6`}
+                          className={`relative flex justify-between items-center h-11 focus:outline-none  text-gray-600 hover:text-rose-600 border-b pr-6`}
                           onClick={() => (handleTabClick(index), toggleMenu(false))}
                         >
-                          <div>
+                          <div className='flex'>
                             <span className="inline-flex justify-center items-center ml-4">
                               <svg
                                 className="w-5 h-5"
@@ -224,13 +232,20 @@ const Sidebar = () => {
                       </button>
                   </div>
                   <div className='flex justify-center items-center gap-2 '>
-                  <div className='py-2 px-5 bg-rose-50 rounded-2xl text-rose-500 font-semibold flex gap-1'>
+                    <div className='py-2 px-2 border bg-rose-50 rounded-xl text-rose-500 font-semibold flex justify-center items-center gap-2'>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
                       </svg>
+                        <p>Install app</p>
+                    </div>
+                    <div className='py-2 px-2 border bg-green-50 rounded-xl text-green-500 font-semibold flex justify-center items-center gap-2 cursor-pointer' onClick={() => navigator("/wallet")}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3" />
+                    </svg>
+
                       <p>500</p>
                     </div>
-                    <div className=''>
+                    <div className='border rounded-full cursor-pointer' onClick={() => navigator("/profile")}>
                       <img className='size-10' src={userId ? userId?.profile : "https://avatar.iran.liara.run/public/12"} alt="" />
                     </div>
                   </div>

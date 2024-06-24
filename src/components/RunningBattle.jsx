@@ -1,9 +1,10 @@
 import React from 'react'
+import 'animate.css';
 
 function RunningBattle() {
   return (
     <>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -18,7 +19,7 @@ function RunningBattle() {
           </div>
 
     </div>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -33,7 +34,7 @@ function RunningBattle() {
           </div>
 
     </div>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -48,7 +49,7 @@ function RunningBattle() {
           </div>
 
     </div>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -63,7 +64,7 @@ function RunningBattle() {
           </div>
 
     </div>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -78,7 +79,7 @@ function RunningBattle() {
           </div>
 
     </div>
-    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+    <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>

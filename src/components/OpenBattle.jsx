@@ -1,8 +1,6 @@
 import React from 'react'
 import { deleteGameRoute, openGameRoute } from '../utils/APIRoutes';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import useFetch from '../hooks/useFetch';
+import 'animate.css';
 
 
 function OpenBattle(game) {
@@ -13,7 +11,7 @@ function OpenBattle(game) {
 
   return (
     <>
-     <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow'>
+     <div className='flex justify-around items-center border rounded-xl py-1 mt-2 bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
@@ -29,7 +27,7 @@ function OpenBattle(game) {
           </div>
         </div>
 
-        <div className='flex justify-around items-center border rounded-xl py-1 mt-2  bg-white shadow'>
+        <div className='flex justify-around items-center border rounded-xl py-1 mt-2  bg-white shadow animate__animated animate__fadeInLeft animate__faster'>
           <div className=' flex justify-around items-center gap-2'>
             <img className='size-10' src="https://avatar.iran.liara.run/public/12" alt="" />
             <p>mqoqVv</p>
