@@ -15,6 +15,9 @@ import Signup from './views/auth/Signup';
 import BottomNav from './components/BottomNav';
 import Classic from './views/game/Classic';
 import RightSideView from './components/RightSideView';
+import All from './views/home/history/All';
+import Deposit from './views/home/history/Deposit';
+import Game from './views/home/history/Game';
 
 export default function App() {
   return (
@@ -66,6 +69,12 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/support" element={<Support />} />
             <Route path="/term&legal" element={<TermLegal />} />
+
+            {/* history */}
+            <Route path="/history/all" element={<All />} />
+            <Route path="/history/deposit" element={<Deposit />} />
+            <Route path="/history/games" element={<Game />} />
+
             
             
           </Route>
