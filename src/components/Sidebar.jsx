@@ -366,8 +366,8 @@ const Sidebar = () => {
 
                       <p>500</p>
                     </div>
-                    <div className='border rounded-full cursor-pointer' onClick={() => navigator("/profile")}>
-                      <img className='size-10' src={userId ? userId?.profile : "https://avatar.iran.liara.run/public/12"} alt="" />
+                    <div className='border rounded-full cursor-pointer' onClick={() => navigator("/")}>
+                      <img className='size-10' src={"/android-icon-72x72.png"} alt="" />
                     </div>
                   </div>
             </div>
