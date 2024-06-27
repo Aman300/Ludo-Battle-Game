@@ -5,7 +5,7 @@ function RightSideView() {
     <>
         <div className=' hidden xl:block xl:w-3/5 fixed ml-[550px] mt-10'>
             <div className='flex justify-center items-center mb-6'>
-                <img className='w-1/4' src="https://kd124.com/Images/LandingPage_img/Header_profile.jpg" alt="" />
+                <img className='w-1/4' src="/android-icon-512x512.png" alt="" />
             </div>
             <div className='text-center '>
                 <p className='text-3xl font-semibold'>PLAY LUDO & WIN REAL CASH !</p>

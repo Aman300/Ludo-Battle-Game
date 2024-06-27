@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { loginRoute } from '../../utils/APIRoutes';
+import { baseUrl, loginRoute } from '../../utils/APIRoutes';
 import { useState } from 'react';
 import 'animate.css';
 import RightSideView from '../../components/RightSideView';
+import useFetch from '../../hooks/useFetch';
+import Loader from '../../components/Loader';
 
 const validate = values => {
   const errors = {};
@@ -96,7 +98,11 @@ function Wallet() {
     if (file) {
       reader.readAsDataURL(file); // Read file as data URL for preview
     }
-  };
+  };    
+
+  const {data,error,loading} = useFetch(baseUrl + `me`, {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  })
 
   return (
     <>
@@ -115,52 +121,55 @@ function Wallet() {
               </div>
               
         </div>
-        <div className="overflow-y-auto overflow-x-hidden flex-grow mb-10 animate__animated animate__fadeInLeft animate__faster">
-          <ul className="flex flex-col py-1 space-y-1 p-3 ">
-            <div className='w-full py-4 border rounded-xl px-5 mb-4'>
-                <div className='flex justify-between items-center gap-4 p-1 mb-2'>
-                   <div className='flex justify-start items-center gap-4'>
-                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
-                     </svg>
-                    <div>
-                      <p className='text-md flex justify-center items-center gap-2 cursor-pointer' onClick={() => setDepositChipInfo(true)}>Deposit Chips<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-rose-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+        {
+          loading ? (<><Loader/></>) : (<><div className="overflow-y-auto overflow-x-hidden flex-grow mb-10 animate__animated animate__fadeInLeft animate__faster">
+            <ul className="flex flex-col py-1 space-y-1 p-3 ">
+              <div className='w-full py-4 border rounded-xl px-5 mb-4'>
+                  <div className='flex justify-between items-center gap-4 p-1 mb-2'>
+                     <div className='flex justify-start items-center gap-4'>
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+                       </svg>
+                      <div>
+                        <p className='text-md flex justify-center items-center gap-2 cursor-pointer' onClick={() => setDepositChipInfo(true)}>Deposit Chips<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-rose-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        </p>
+                        <h1 className='text-sm text-gray-500'>₹ {data?.addChip}</h1>
+                      </div>
+                     </div>
+                     <div className=' hover:text-rose-600 cursor-pointer' onClick={() => setDepositChipsForm(true)}>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                       </svg>
-                      </p>
-                      <h1 className='text-sm text-gray-500'>₹ 556</h1>
-                    </div>
-                   </div>
-                   <div className=' hover:text-rose-600 cursor-pointer' onClick={() => setDepositChipsForm(true)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </div>
-                </div>
-                <hr />
-                <div className='flex justify-between items-center gap-4 p-1 mt-2'>
-                  <div className='flex justify-start items-center gap-4'>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
-                  </svg>
-
-                    <div>
-                      <p className='text-md flex justify-center items-center gap-2 cursor-pointer' onClick={() => setWinChipInfo(true)}>Winning Chips<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-rose-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-                      </svg>
-                      </p>
-                      <h1 className='text-sm text-gray-500'>₹ 500</h1>
                     </div>
                   </div>
-                  <div className=' hover:text-rose-600 cursor-pointer' onClick={() => setWinChipForm(true)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                  <hr />
+                  <div className='flex justify-between items-center gap-4 p-1 mt-2'>
+                    <div className='flex justify-start items-center gap-4'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
                     </svg>
+  
+                      <div>
+                        <p className='text-md flex justify-center items-center gap-2 cursor-pointer' onClick={() => setWinChipInfo(true)}>Winning Chips<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 hover:text-rose-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                        </svg>
+                        </p>
+                        <h1 className='text-sm text-gray-500'>₹ {data?.withdrawAmount}</h1>
+                      </div>
+                    </div>
+                    <div className=' hover:text-rose-600 cursor-pointer' onClick={() => setWinChipForm(true)}>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-            </div>
-          </ul>
-        </div>
+              </div>
+            </ul>
+          </div></>)
+        }
+        
 
       { showDepositChipInfo ? (<>
         <div className="flex animate__animated animate__fadeInUp animate__faster fixed bottom-0 xl:w-1/3 w-full outline-none focus:outline-none">

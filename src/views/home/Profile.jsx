@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { loginRoute } from '../../utils/APIRoutes';
+import { baseUrl, loginRoute } from '../../utils/APIRoutes';
 import { useState } from 'react';
 import 'animate.css';
 import RightSideView from '../../components/RightSideView';
+import useFetch from '../../hooks/useFetch';
+import Loader from '../../components/Loader';
 
 const validate = values => {
   const errors = {};
@@ -31,6 +33,7 @@ const validate = values => {
 function Profile() {
   
   const [showKyc, setShowKyc] = useState(false);
+  const [showEditProfile, setEditProfile] = useState(false);
 
   const [showPassword, setShowPassword] = useState();
 
@@ -94,6 +97,13 @@ function Profile() {
     }
   };
 
+
+  const {data,error,loading} = useFetch(baseUrl + `me`, {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  })
+
+  console.log(data)
+
   return (
     <>
     <div className='flex'>
@@ -111,7 +121,9 @@ function Profile() {
               </div>
               
         </div>
-        <div className="overflow-y-auto overflow-x-hidden flex-grow mb-10 animate__animated animate__fadeInLeft animate__faster">
+        {
+          loading ? (<Loader/>) : (<>
+              <div className="overflow-y-auto overflow-x-hidden flex-grow mb-10 animate__animated animate__fadeInLeft animate__faster">
           <ul className="flex flex-col py-1 space-y-1 p-3 ">
             <div className='w-full py-4 border rounded-xl px-5 mb-4'>
                 <div className='flex justify-between items-center gap-4 p-1 mb-2'>
@@ -121,10 +133,10 @@ function Profile() {
                   </svg>
                     <div>
                       <p className='text-md'>Name</p>
-                      <h1 className='text-sm text-gray-500'>Aman Sharma</h1>
+                      <h1 className='text-sm text-gray-500'>{data?.name}</h1>
                     </div>
                 </div>
-                  <div>
+                  <div onClick={() => setEditProfile(true) } className=' cursor-pointer hover:text-rose-600'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
@@ -139,7 +151,7 @@ function Profile() {
                   </svg>
                     <div>
                       <p className='text-md'>Phone Number</p>
-                      <h1 className='text-sm text-gray-500'>+91 7324821534</h1>
+                      <h1 className='text-sm text-gray-500'>+91 {data?.phone}</h1>
                     </div>
                   </div>
                   <div>
@@ -195,7 +207,7 @@ function Profile() {
                     </div>
                   </div>
                   <div>
-                  ₹ 100
+                  ₹ {data?.wonAmount}
                   </div>
                 </div>
                 <hr />
@@ -210,7 +222,7 @@ function Profile() {
                     </div>
                   </div>
                   <div>
-                  ₹ 150
+                  ₹ {data?.referralEarning}
                   </div>
                 </div>
                 <hr />
@@ -231,6 +243,9 @@ function Profile() {
             </div>
           </ul>
         </div>
+          </>)
+        }
+        
 
       { showKyc ? (<>
         <div className="flex animate__animated animate__fadeInUp animate__faster fixed bottom-0 xl:w-1/3 w-full outline-none focus:outline-none">
@@ -348,6 +363,54 @@ function Profile() {
                   ) : (
                       // Show "Signup" text if not submitting
                       <span className=' uppercase'>Submit KYC</span>
+                  )}
+              </button>
+            </form>
+             
+            
+
+               
+                  
+            </div>
+          </div>
+        </div>
+      </>) : null       
+      }
+      { showEditProfile ? (<>
+        <div className="flex animate__animated animate__fadeInUp animate__faster fixed bottom-0 xl:w-1/3 w-full outline-none focus:outline-none">
+          <div className="w-full">
+            <div className="rounded-t-[30px] shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none xl:p-6 p-5">
+              <div className='flex justify-between ' onClick={() => setEditProfile(false)}>
+                <p className=' text-bold font-semibold'></p>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 cursor-pointer hover:text-rose-600">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+              </div>
+              <div className='flex justify-center items-center mb-3'>
+                <h1 className=' text-xl font-semibold'>Update Name ✌</h1>
+              </div>
+
+            <form onSubmit={formik.handleSubmit}>
+
+            <input id="name" name='name' onChange={formik.handleChange}
+              className={`w-full px-6 py-4 rounded-xl font-medium bg-gray-100 border ${formik.errors.name ? "border-red-500" : "border-gray-300"} placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mb-2`}
+              type="text"
+              value={data?.name}
+              placeholder="Enter your name"
+              />
+
+              {/* Submit button */}
+              <button
+                  type='submit'
+                  className="xl:mb-0 mb-10 tracking-wide font-semibold bg-rose-600 text-gray-100 w-full py-4 rounded-xl hover:bg-rose-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                  disabled={formik.isSubmitting} // Disable the button while submitting
+              >
+                  {formik.isSubmitting ? (
+                      // Show loading spinner if submitting
+                      <span>Loading...</span>
+                  ) : (
+                      // Show "Signup" text if not submitting
+                      <span className=' uppercase'>Update</span>
                   )}
               </button>
             </form>

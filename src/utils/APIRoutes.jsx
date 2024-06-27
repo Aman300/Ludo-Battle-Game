@@ -1,6 +1,7 @@
-export const host = "http://localhost:3000";
+export const host = "https://api-staging.kd124.com";
+export const baseUrl = "https://api-staging.kd124.com/";
 // export const host = "https://ourchat-821q.onrender.com";
-export const loginRoute = `${host}/api/auth/login`;
+export const loginRoute = `${host}/login`;
 export const userListRoute = `${host}/api/auth/user-list`;
 export const userDetailsRoute = `${host}/api/auth/user-details`;
 export const registerRoute = `${host}/api/auth/register`;

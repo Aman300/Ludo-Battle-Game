@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { openGameRoute, sendMessageRoute, userListRoute } from '../../utils/APIRoutes';
+import { baseUrl, openGameRoute, sendMessageRoute, userListRoute } from '../../utils/APIRoutes';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useFormik } from 'formik';
@@ -9,6 +9,7 @@ import 'animate.css';
 import { Link } from 'react-router-dom';
 import BottomNav from '../../components/BottomNav';
 import RightSideView from '../../components/RightSideView';
+import useFetch from '../../hooks/useFetch';
 
 
 const validate = values => {
@@ -27,7 +28,6 @@ function Home() {
   let userId = JSON.parse(localStorage.getItem("user"))
 
   const [showModal, setShowModal] = useState(false);
-  const [data,setData] = useState([])
   const [userData,setUserData] = useState([])
   const [showGameInfo, setGameInfo] = useState(false)
 
@@ -88,20 +88,11 @@ async function fetchUserList(){
 
 
 
-  function generateRoomCode(id) {
-    // Ensure userId is a string
-    const senderId = String(userId._id);
-    
-    // Ensure id is a string
-    const receiverId = String(id);
-  
-    // Combine senderId and receiverId
-    const roomCode = senderId < receiverId ? `${senderId}_${receiverId}` : `${receiverId}_${senderId}`;
-  
-    localStorage.setItem("room", roomCode);
-    
-    return roomCode;
-  }
+  const {data,error,loading} = useFetch(baseUrl + `settings/data`, {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+  })
+
+  console.log(data)
   
   
 
@@ -113,11 +104,14 @@ async function fetchUserList(){
   <div className='flex'>
     <div className='w-full xl:w-2/6  xl:border-r-4 border-gray-300'>
     <ul className="flex flex-col py-1 space-y-1 p-3 mb-4">
-      <div className='w-full py-2 border rounded-xl'>
-        <div className='text-center text-gray-800 text-sm font-semibold'>
-          <p>Commission: 5 % ◉ Referral: 2% For All Games</p>
-        </div>          
-      </div>
+      {
+        loading ? null : <div className='w-full py-2 border rounded-xl'>
+          <div className='text-center text-gray-800 text-sm font-semibold'>
+            <p>Commission: {data?.adminPercentage50To400} % ◉ Referral: {data?.referPercentage}% For All Games</p>
+          </div>          
+        </div>
+      }
+      
       <div className='w-full py-5 border rounded-xl px-3 mb-4'>
         <div className='text-center text-gray-600 mb-2 text-sm font-semibold'>
           <p>Notice:- 1st निकासी 200 रूपए से ज्यादा नहीं होनी चाहिए अन्यथा आप की निकासी फेल्ड हो जायेगा। Important:- शाम 4-7pmकमिशन 0% रहेगा।</p>
@@ -164,13 +158,13 @@ async function fetchUserList(){
                 </svg>
               </div>
               <div className='flex justify-center items-center mb-3'>
-                <h1 className=' text-xl font-semibold'>Winning Chips ✌</h1>
+                <h1 className=' text-xl font-semibold'>How To Play Games & Earn? ✌</h1>
               </div>
 
           
              
-             <div className='text-center text-gray-500 mb-8 text-sm'>
-              <p>यह चिप्स गेम से जीती हुई एवं रेफरल से कमाई हुई है इन्हें Bank या UPI में निकाला जा सकता है ॥ इन चिप्स से गेम भी खेला जा सकता है</p>
+             <div className='text-center text-gray-500 mb-8 text-xs'>
+              <p>Guide to Responsible Play Sometimes, players may find it hard to recognize that their online play is getting out of control.</p>
              </div>
 
                

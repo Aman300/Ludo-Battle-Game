@@ -2,6 +2,8 @@
 import { useState, } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import 'animate.css';
+import { baseUrl } from '../utils/APIRoutes';
+import useFetch from '../hooks/useFetch';
 
 
 
@@ -121,6 +123,10 @@ const Sidebar = () => {
       
       };
     
+
+      const {data,error,loading} = useFetch(baseUrl + `me`, {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      })
     
 
 
@@ -364,7 +370,7 @@ const Sidebar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3" />
                     </svg>
 
-                      <p>500</p>
+                      <p>{data?.walletBalance}</p>
                     </div>
                     <div className='border rounded-full cursor-pointer' onClick={() => navigator("/")}>
                       <img className='size-10' src={"/android-icon-72x72.png"} alt="" />
