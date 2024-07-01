@@ -4,7 +4,7 @@ const PrivateRoutes = () => {
     //let auth = localStorage.getItem('token')
      let auth = true
     return(
-        auth ? <Outlet/> : <Navigate to="/signin"/>
+        auth ? <Outlet/> : <Navigate to="/"/>
     )
 }
 
